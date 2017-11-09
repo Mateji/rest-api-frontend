@@ -1,16 +1,17 @@
+import { APP_CONFIG, AppConfig } from '../app.config';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User } from './user';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
 @Injectable()
 export class UsersService {
 
-  private userUrl = 'http://localhost:3000/users';
+  private userUrl = this.config.apiEndpoint + '/users';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, @Inject(APP_CONFIG) private config: AppConfig) { }
 
   getUsers (): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl)
