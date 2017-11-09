@@ -22,7 +22,7 @@ export class AuthService {
 
     return tokenNotExpired(null, token);
   }
-
+  // TODO change map, as it is not compatible or needed with httpclient
   login(username: string, password: string): Observable<boolean> {
     return this.http.post(this.authUrl, JSON.stringify({username: username, password: password}))
       .map((response: Response) => {
