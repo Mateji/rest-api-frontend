@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { Injectable, Inject } from '@angular/core';
-import { tokenNotExpired } from 'angular2-jwt'
+import { tokenNotExpired } from 'angular2-jwt';
 import { AppConfig, APP_CONFIG } from '../app.config';
-import { map } from 'rxjs/operators';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
   private authUrl = this.config.apiEndpoint + '/authenticate';
   loggedIn: boolean;
 
-  constructor(private http: HttpClient, @Inject(APP_CONFIG) private config: AppConfig) {}
+  constructor(private http: HttpClient, @Inject(APP_CONFIG) private config: AppConfig) { }
 
   public getToken(): string {
     return localStorage.getItem('token');
@@ -22,17 +22,19 @@ export class AuthService {
 
     return tokenNotExpired(null, token);
   }
-  // TODO change map, as it is not compatible or needed with httpclient
-  login(username: string, password: string): Observable<boolean> {
-    return this.http.post(this.authUrl, JSON.stringify({username: username, password: password}))
+
+  login(name: string, password: string): Observable<boolean> {
+    return this.http.post(this.authUrl, { name: name, password: password })
       .map((response: Response) => {
-        let token = response.json() && response.json().token;
-        if (token) {
-          localStorage.setItem('token', token);
-          return true;
-        } else {
-          return false;
+        if (response.success) {
+          console.log(response);
+          const token = response.token;
+          if (token) {
+            localStorage.setItem('token', token);
+            return true;
+          }
         }
+        return false;
       });
   }
 

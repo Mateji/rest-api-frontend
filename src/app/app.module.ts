@@ -15,6 +15,7 @@ import { UsersComponent } from './users/users.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GroupsComponent } from './groups/groups.component';
 import { LoginComponent } from './login/login.component';
+import { LoggingInterceptor } from './interceptors/logging.interceptor';
 
 
 @NgModule({
@@ -47,6 +48,11 @@ import { LoginComponent } from './login/login.component';
       useClass: ApiUrlInterceptor,
       multi: true,
       deps: [APP_CONFIG]
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoggingInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]
