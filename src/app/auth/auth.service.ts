@@ -25,10 +25,10 @@ export class AuthService {
 
   login(name: string, password: string): Observable<boolean> {
     return this.http.post(this.authUrl, { name: name, password: password })
-      .map((response: Response) => {
-        if (response.success) {
-          console.log(response);
-          const token = response.token;
+      .map((data) => {
+        if (data['success']) {
+          console.log(data);
+          const token = data['token'];
           if (token) {
             localStorage.setItem('token', token);
             return true;

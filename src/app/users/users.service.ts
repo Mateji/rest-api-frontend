@@ -15,6 +15,10 @@ export class UsersService {
 
   getUsers (): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl)
+      .map((data) => {
+        console.log("Service:", data);
+        return data;
+      })
       .pipe(
         catchError(this.handleError('getUsers', []))
       );
