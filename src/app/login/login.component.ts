@@ -1,3 +1,4 @@
+import { GlobalDataService } from '../globalData/global-data.service';
 import { AuthService } from '../auth/auth.service';
 import { LoginUser } from './loginUser';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   error = '';
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private globalDataService: GlobalDataService) { }
 
   ngOnInit() {
   }
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
       .subscribe(result => {
         console.log(result);
         if (result === true) {
-          this.router.navigate(['/']);
+          this.router.navigate(['/start']);
         } else {
           this.error = 'Username or password is incorrect';
           this.loading = false;

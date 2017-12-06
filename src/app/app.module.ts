@@ -16,6 +16,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { GroupsComponent } from './groups/groups.component';
 import { LoginComponent } from './login/login.component';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
+import { StartComponent } from './start/start.component';
+import { AuthGuard } from './guards/auth-guard.service';
+import { LandingComponent } from './landing/landing.component';
+import { GroupsService } from './groups/groups.service';
+import { SignupComponent } from './signup/signup.component';
+import { GlobalDataService } from './globalData/global-data.service';
 
 
 @NgModule({
@@ -24,6 +30,9 @@ import { LoggingInterceptor } from './interceptors/logging.interceptor';
     UsersComponent,
     GroupsComponent,
     LoginComponent,
+    StartComponent,
+    LandingComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +43,9 @@ import { LoggingInterceptor } from './interceptors/logging.interceptor';
   providers: [
     UsersService,
     AuthService,
+    GroupsService,
+    AuthGuard,
+    GlobalDataService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

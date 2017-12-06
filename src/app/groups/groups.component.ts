@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Group } from './group';
+import { GroupsService } from './groups.service';
 
 @Component({
   selector: 'app-groups',
@@ -7,10 +9,17 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class GroupsComponent implements OnInit {
+  groups: Group[];
 
-  constructor() { }
+  constructor(private groupsService: GroupsService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.getGroups();
+  }
+
+  getGroups(): void {
+    this.groupsService.getGroups()
+      .subscribe(groups => this.groups = groups);
   }
 
 }

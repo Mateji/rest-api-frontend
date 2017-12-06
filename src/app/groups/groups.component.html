@@ -1,3 +1,23 @@
-<p>
-  groups works!
-</p>
+<section class="hero is-small is-info is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Groups Page
+      </h1>
+      <h2 class="subtitle">
+        Visible to logged in users
+      </h2>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="tile is-ancestor">
+      <div class="tile is-parent is-3" *ngFor="let group of groups">
+        <div class="tile is-child box">
+          <p class="title">{{group.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+<section class="hero is-small is-info is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Signup Page
+        </h1>
+        <h2 class="subtitle">
+          Visible to everyone
+        </h2>
+      </div>
+    </div>
+  </section>
+<section class="section">
+  <div class="container">
+    <p>
+      TODO: remove this: {{model.name}}//{{model.password}}
+    </p>
+    <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="field">
+        <label for="name">Name</label>
+        <div class="control">
+          <input type="text" class="input" placeholder="Name" id="name" required [(ngModel)]="model.name" name="name">
+        </div>
+      </div>
+      <div class="field">
+          <label for="email">E-Mail</label>
+          <div class="control">
+            <input type="text" class="input" placeholder="E-Mail" id="email" required [(ngModel)]="model.email" name="email">
+          </div>
+        </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="control">
+          <input type="text" class="input" placeholder="Password" id="password" required [(ngModel)]="model.password" name="password">
+        </div>
+      </div>
+
+      <div *ngIf="error" class="notification is-danger">{{error}}</div>
+
+      <div class="field is-grouped">
+        <div class="control">
+          <button [disabled]="loading" class="button is-link">Submit</button>
+        </div>
+        <div class="control">
+          <button class="button is-text">Cancel</button>
+        </div>
+      </div>
+      <div *ngIf="loading" class="loading-spinner"></div>
+    </form>
+  </div>
+</section>

@@ -8,4 +8,4 @@ export interface AppConfig {
 
 export const appConfig: AppConfig = {
     apiEndpoint: 'http://localhost:3000'
-}
+};

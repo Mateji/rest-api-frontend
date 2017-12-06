@@ -30,7 +30,7 @@ export class UsersService {
       console.error(error);
 
       return of(result as T);
-    }
+    };
   }
 
 }

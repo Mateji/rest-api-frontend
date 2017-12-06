@@ -5,13 +5,14 @@ import { Injectable, Inject } from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
 import { AppConfig, APP_CONFIG } from '../app.config';
 import 'rxjs/add/operator/map';
+import { GlobalDataService } from '../globalData/global-data.service';
 
 @Injectable()
 export class AuthService {
   private authUrl = this.config.apiEndpoint + '/authenticate';
   loggedIn: boolean;
 
-  constructor(private http: HttpClient, @Inject(APP_CONFIG) private config: AppConfig) { }
+  constructor(private http: HttpClient, @Inject(APP_CONFIG) private config: AppConfig, private globalDataService: GlobalDataService) { }
 
   public getToken(): string {
     return localStorage.getItem('token');
@@ -31,6 +32,7 @@ export class AuthService {
           const token = data['token'];
           if (token) {
             localStorage.setItem('token', token);
+            this.globalDataService.userName = data['name'];
             return true;
           }
         }

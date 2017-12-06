@@ -1,5 +1,6 @@
 import { AuthService } from './auth/auth.service';
 import { Component } from '@angular/core';
+import { GlobalDataService } from './globalData/global-data.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private globalDataService: GlobalDataService) {}
 }

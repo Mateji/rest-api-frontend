@@ -1,9 +1,16 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
   <div class="navbar-menu">
-    <a class="navbar-item" routerLink="/login">Login</a>
-    <a *ngIf="authService.isAuthenticated" class="navbar-item" routerLink="/users">Users</a>
-    <a *ngIf="authService.isAuthenticated" class="navbar-item" routerLink="/groups">Groups</a>
+    <div class="navbar-start">
+      <a class="navbar-item" routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{exact: true}">Landing</a>
+      <a class="navbar-item" *ngIf="authService.isAuthenticated()" routerLink="/start" routerLinkActive="is-active">Start</a>
+      <a *ngIf="authService.isAuthenticated()" class="navbar-item" routerLink="/users" routerLinkActive="is-active">Users</a>
+      <a *ngIf="authService.isAuthenticated()" class="navbar-item" routerLink="/groups" routerLinkActive="is-active">Groups</a>
+    </div>
+    <div class="navbar-end" [ngSwitch]="authService.isAuthenticated()">
+      <div class="navbar-item" *ngSwitchCase="true">Hi {{ globalDataService.userName }}</div>
+      <a class="navbar-item" routerLink="/login" *ngSwitchCase="false">Log in</a>
+      <a class="navbar-item" (click)="authService.logout()" *ngSwitchCase="true">Log out</a>
+    </div>
   </div>
 </nav>
 <router-outlet></router-outlet>
-
