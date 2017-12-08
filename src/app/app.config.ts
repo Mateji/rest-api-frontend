@@ -7,5 +7,5 @@ export interface AppConfig {
 }
 
 export const appConfig: AppConfig = {
-    apiEndpoint: 'http://localhost:3000'
+    apiEndpoint: 'http://mateji.betelgeuse.uberspace.de/node/rest-api'
 };
