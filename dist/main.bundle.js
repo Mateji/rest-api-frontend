@@ -148,7 +148,7 @@ var AppComponent = /** @class */ (function () {
 
 var APP_CONFIG = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["InjectionToken"]('app.config');
 var appConfig = {
-    apiEndpoint: 'http://mateji.betelgeuse.uberspace.de/node/rest-api'
+    apiEndpoint: 'https://mateji.betelgeuse.uberspace.de/node/rest-api'
 };
 
 
