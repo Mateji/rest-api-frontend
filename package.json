@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build && git commit dist -m 'added compiled dist files' && git push && git subtree push --prefix dist ghpages master"
+    "deploy": "ng build && git commit dist -m \"added compiled dist files\" && git push && git subtree push --prefix dist ghpages master"
   },
   "private": true,
   "dependencies": {
