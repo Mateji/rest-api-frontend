@@ -12,7 +12,8 @@
           <div class="field">
             <label for="password">Password</label>
             <div class="control">
-              <input type="password" class="input" placeholder="Password" id="password" required [(ngModel)]="model.password" name="password" [class.is-danger]="error">
+              <input type="password" class="input" placeholder="Password" id="password" required [(ngModel)]="model.password" name="password"
+                [class.is-danger]="error">
             </div>
           </div>
 
@@ -26,7 +27,19 @@
               <button class="button is-text" type="reset">Cancel</button>
             </div>
           </div>
-          <div *ngIf="loading" class="loading-spinner"></div>
+          <div *ngIf="loading" class="loading-wrapper">
+            <div class="sk-cube-grid">
+              <div class="sk-cube sk-cube1"></div>
+              <div class="sk-cube sk-cube2"></div>
+              <div class="sk-cube sk-cube3"></div>
+              <div class="sk-cube sk-cube4"></div>
+              <div class="sk-cube sk-cube5"></div>
+              <div class="sk-cube sk-cube6"></div>
+              <div class="sk-cube sk-cube7"></div>
+              <div class="sk-cube sk-cube8"></div>
+              <div class="sk-cube sk-cube9"></div>
+            </div>
+          </div>
         </form>
       </div>
     </div>

@@ -11,6 +11,7 @@ import { GlobalDataService } from '../globalData/global-data.service';
 export class AuthService {
   private authUrl = this.config.apiEndpoint + '/authenticate';
   loggedIn: boolean;
+  group: string;
 
   constructor(private http: HttpClient, @Inject(APP_CONFIG) private config: AppConfig, private globalDataService: GlobalDataService) { }
 
@@ -24,6 +25,10 @@ export class AuthService {
     return tokenNotExpired(null, token);
   }
 
+  public isGroup(group: string): boolean {
+    return this.globalDataService.userGroup === group;
+  }
+
   login(name: string, password: string): Observable<boolean> {
     return this.http.post(this.authUrl, { name: name, password: password })
       .map((data) => {
@@ -32,6 +37,7 @@ export class AuthService {
           const token = data['token'];
           if (token) {
             localStorage.setItem('token', token);
+            this.globalDataService.userGroup = data['group'];
             this.globalDataService.userName = data['name'];
             return true;
           }
@@ -41,6 +47,7 @@ export class AuthService {
   }
 
   logout(): void {
+    this.globalDataService.clearDataService();
     localStorage.removeItem('token');
   }
 }
